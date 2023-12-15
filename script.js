@@ -11,20 +11,25 @@ const WinPatterns = [
 
 let turn = true;
 let numClick = 0;
+let ox = "X";
 const boxes = document.querySelectorAll('.box');
 boxes.forEach ((btn) =>{
     btn.addEventListener("click", ()=>{
         numClick++
-        if(numClick == 9){
+        if(numClick > 8){
             playerTurn.innerText = "Draw";
-        }else if(turn){
-            playerTurn.innerText = `O's turn`;
-            btn.innerHTML = "X";
+            btn.innerHTML = ox;
+        }
+        else if(turn){
+            playerTurn.innerText = `${ox}'s turn`;
+            btn.innerHTML = ox;
             turn = false;
+            ox = "O";
         }else{
-            playerTurn.innerText = `X's turn`;
-            btn.innerHTML = "O";
+            playerTurn.innerText = `${ox}'s turn`;
+            btn.innerHTML = ox;
             turn = true;
+            ox = "X";
         }
         btn.disabled = true;
         checkWinner();
@@ -48,11 +53,13 @@ const checkWinner = () => {
         
         if(val_1 != "" && val_2 != "" && val_3 != ""){
             if(val_1 === val_2 && val_2 === val_3){
-                disableAllBtn();
                 playerTurn.innerText = `Winner ${val_1}`;
                 playerTurn.style.color = "green";
                 resetBtn.innerText = "Play Again";
                 numClick = 0;
+                disableAllBtn();
+            }else{
+                playerTurn.style.color = "black";
             }
         }
     };
@@ -66,4 +73,5 @@ resetBtn.addEventListener('click', ()=>{
     playerTurn.innerText = "";
     resetBtn.innerText = "Reset";
     numClick = 0;
+    ox = "X";
 });
