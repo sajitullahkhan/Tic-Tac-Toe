@@ -16,19 +16,17 @@ const boxes = document.querySelectorAll('.box');
 boxes.forEach ((btn) =>{
     btn.addEventListener("click", ()=>{
         numClick++
-        if(numClick > 8){
+        if(numClick >= 9){
             playerTurn.innerText = "Draw";
             btn.innerHTML = ox;
         }
-        else if(turn){
+        else if(ox === "X"){
             playerTurn.innerText = `${ox}'s turn`;
             btn.innerHTML = ox;
-            turn = false;
             ox = "O";
         }else{
             playerTurn.innerText = `${ox}'s turn`;
             btn.innerHTML = ox;
-            turn = true;
             ox = "X";
         }
         btn.disabled = true;
