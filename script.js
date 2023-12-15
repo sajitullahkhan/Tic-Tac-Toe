@@ -74,4 +74,5 @@ resetBtn.addEventListener('click', ()=>{
     resetBtn.innerText = "Reset";
     numClick = 0;
     ox = "X";
+    playerTurn.style.color = "black";
 });
